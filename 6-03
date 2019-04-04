@@ -1,0 +1,27 @@
+display.newText( "kind of movie", display.contentCenterX, display.contentCenterY -160, native.systemFont, 30 )
+
+local kindofmovieTextField = native.newTextField( display.contentCenterX, display.contentCenterY + -120, 300, 40 )
+kindofmovieTextField.id = "kindofmovieTextField"
+
+local image = display.newImageRect( "enterButton.png", 150, 75 )
+image.x = display.contentCenterX
+image.y = 185
+image.id = "calculatebutton"
+
+display.newText( "age", display.contentCenterX, display.contentCenterY, native.systemFont, 20 )
+
+local ageTextField = native.newTextField( display.contentCenterX, display.contentCenterY + 50, 300, 40 )
+ageTextField.id = "ageTextField"
+ageTextField.inputType="number"
+
+local function calculateButtonTouch( event )
+	local age = tonumber(ageTextField.text)
+	if age >= 17 then
+		kindofmovieTextField.text = "R,PG13,G"
+	elseif age >= 13 then
+		kindofmovieTextField.text = "PG13,G"
+	else
+		kindofmovieTextField.text = "G"
+	end
+end
+image:addEventListener( "touch", calculateButtonTouch )
